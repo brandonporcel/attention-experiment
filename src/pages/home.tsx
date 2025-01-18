@@ -1,8 +1,8 @@
 import * as motion from "motion/react-client";
 import { Bookmark, MessageSquare } from "lucide-react";
 import { AnimatePresence } from "motion/react";
-import { Button } from "../components/ui/button";
 import { useEffect, useRef, useState } from "react";
+import { Button } from "../components/ui/button";
 import SocialShare from "../components/social-share";
 import Clock from "../components/clock";
 import Sound from "../components/sound";
@@ -16,20 +16,20 @@ const bgCtn: React.CSSProperties = {
 
 const textsByTime = {
   "00:00": {
-    text: "This painting is called 'The Scream'",
+    text: "This picture is from Alexander McQueen's",
     end: "00:02",
   },
-  "00:02": {
+  "00:05": {
     text: "This may be to feel uncomfortable, but it's not to stay that way.",
-    end: "00:05",
+    end: "00:10",
   },
-  "00:06": {
+  "00:11": {
     text: "Right down there is a exit button.",
-    end: "00:09",
+    end: "00:15",
   },
-  "01:00": {
+  "00:15": {
     text: "There is not good or bad way of doing this.",
-    end: "01:30",
+    end: "00:30",
   },
 };
 
@@ -68,7 +68,8 @@ export default function Page() {
   };
 
   const quit = () => {
-    setIsBig(false);
+    setIsBig(true);
+    setTime(0);
   };
 
   useEffect(() => {

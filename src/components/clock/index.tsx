@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 type ClockProps = {
   time: number;
@@ -13,6 +13,8 @@ export default function Clock({
   limit,
   onTimerEnd,
 }: ClockProps) {
+  const [isHidden, setIsHidden] = useState(false);
+
   useEffect(() => {
     const timer = setInterval(() => {
       setTime((prevTime) => {
@@ -28,6 +30,17 @@ export default function Clock({
     return () => clearInterval(timer);
   }, [setTime, limit, onTimerEnd]);
 
+  useEffect(() => {
+    const twentyPercent = Math.floor(limit * 0.2);
+    const ninetyPercent = Math.floor(limit * 0.9);
+
+    if (time <= twentyPercent || time >= ninetyPercent) {
+      setIsHidden(false);
+    } else {
+      setIsHidden(true);
+    }
+  }, [time, limit]);
+
   const formatTime = (seconds: number) => {
     const minutes = Math.floor(seconds / 60)
       .toString()
@@ -35,6 +48,10 @@ export default function Clock({
     const secs = (seconds % 60).toString().padStart(2, "0");
     return `${minutes}:${secs}`;
   };
+
+  if (isHidden) {
+    return null;
+  }
 
   return <p className="text-xl font-bold">{formatTime(time)}</p>;
 }
