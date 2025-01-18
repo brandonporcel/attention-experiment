@@ -1,11 +1,9 @@
 import Home from "./pages/home";
 
 function App() {
-  return (
-    <>
-      <Home></Home>
-    </>
-  );
+  console.log("Have a great day! 📣🐢");
+
+  return <Home />;
 }
 
 export default App;
